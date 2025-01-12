@@ -12,4 +12,12 @@ export class OpenLibraryController {
         }
         return this.openLibraryService.searchBooks(query);
     }
+
+    @Get('details')
+    async getBookDetails(@Query('isbn') isbn: string) {
+        if (!isbn) {
+            return { error: 'ISBN parameter is required' };
+        }
+        return this.openLibraryService.getBookDetails(isbn);
+    }
 }

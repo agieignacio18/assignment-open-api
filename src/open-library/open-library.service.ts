@@ -42,6 +42,23 @@ export class OpenLibraryService {
         }
     }
 
+    async getFeaturedBooks(): Promise<any> {
+        try {
+            // Hardcoded book titles for simplicity; replace with dynamic queries if needed
+            const featuredTitles = ['Pride and Prejudice', '1984', 'The Great Gatsby'];
+            const promises = featuredTitles.map((title) =>
+                axios.get(`${this.baseUrl}/search.json`, { params: { q: title } }),
+            );
+            const responses = await Promise.all(promises);
+            return responses.map((res) => this.formatBooks(res.data)[0]); // Return the first result for each title
+        } catch (error) {
+            throw new HttpException(
+                'Failed to fetch featured books',
+                HttpStatus.INTERNAL_SERVER_ERROR,
+            );
+        }
+    }
+
     private formatBooks(data: any): any {
         return data.docs.map((book: any) => ({
             title: book.title,

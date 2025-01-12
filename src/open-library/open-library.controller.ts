@@ -20,4 +20,9 @@ export class OpenLibraryController {
         }
         return this.openLibraryService.getBookDetails(isbn);
     }
+
+    @Get('featured')
+    async getFeaturedBooks() {
+        return this.openLibraryService.getFeaturedBooks();
+    }
 }

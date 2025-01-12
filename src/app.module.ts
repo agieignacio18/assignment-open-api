@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { OpenLibraryService } from './open-library/open-library.service';
+import { OpenLibraryController } from './open-library/open-library.controller';
 
 @Module({
   imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [OpenLibraryController],
+  providers: [OpenLibraryService],
 })
-export class AppModule {}
+export class AppModule { }
